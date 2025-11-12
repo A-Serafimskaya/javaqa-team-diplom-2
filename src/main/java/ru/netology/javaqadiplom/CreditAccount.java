@@ -6,7 +6,9 @@ package ru.netology.javaqadiplom;
  * Имеет ставку - количество процентов годовых на сумму на балансе, если она меньше нуля.
  */
 public class CreditAccount extends Account {
+
     protected int creditLimit;
+
 
     /**
      * Создаёт новый объект кредитного счёта с заданными параметрами.
@@ -26,6 +28,9 @@ public class CreditAccount extends Account {
         this.creditLimit = creditLimit;
         this.rate = rate;
     }
+
+
+
 
     /**
      * Операция оплаты с карты на указанную сумму.
