@@ -158,7 +158,7 @@ public class CreditAccountTest {
 
         account.add(-500);
 
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(500, account.getBalance());
     }
 
     @Test
