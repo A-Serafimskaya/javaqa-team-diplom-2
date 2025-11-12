@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 public class CreditAccountTest {
 
 
-
     @Test
     public void shouldCreateAccountWithValidParameters() {
         CreditAccount account = new CreditAccount(
@@ -18,6 +17,20 @@ public class CreditAccountTest {
         Assertions.assertEquals(100, account.getBalance());
         Assertions.assertEquals(5000, account.getCreditLimit());
         Assertions.assertEquals(10, account.getRate());
+
+    }
+
+    @Test
+    public void shouldCreateAccountWith0() {
+        CreditAccount account = new CreditAccount(
+                0,
+                0,
+                0);
+        Assertions.assertNotNull(account);
+
+        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(0, account.getCreditLimit());
+        Assertions.assertEquals(0, account.getRate());
 
     }
 
@@ -99,7 +112,6 @@ public class CreditAccountTest {
     }
 
 
-
     @Test
     public void testAddPositiveAmount() {
         CreditAccount account = new CreditAccount(
@@ -136,17 +148,17 @@ public class CreditAccountTest {
         Assertions.assertFalse(account.add(0));
     }
 
-        @Test
-        public void shouldNotAddNegativeAmount() {
-            CreditAccount account = new CreditAccount(
-                    500,
-                    1000,
-                    10
-            );
+    @Test
+    public void shouldNotAddNegativeAmount() {
+        CreditAccount account = new CreditAccount(
+                500,
+                1000,
+                10
+        );
 
-            account.add(-500);
+        account.add(-500);
 
-        Assertions.assertEquals(0, account.getBalance() );
+        Assertions.assertEquals(0, account.getBalance());
     }
 
     @Test
