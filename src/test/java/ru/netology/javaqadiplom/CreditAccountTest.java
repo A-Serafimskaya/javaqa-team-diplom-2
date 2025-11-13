@@ -79,6 +79,31 @@ public class CreditAccountTest {
     }
 
     @Test
+    public void testPayBalanceOver0() {
+        CreditAccount account = new CreditAccount(
+                500,
+                1000,
+                10
+        );
+
+        account.pay(300);
+        Assertions.assertEquals(200, account.getBalance());
+    }
+
+    @Test
+    public void testPayBalanceBelow0() {
+        CreditAccount account = new CreditAccount(
+                500,
+                1000,
+                10
+        );
+
+        account.pay(800);
+        Assertions.assertEquals(-300, account.getBalance());
+    }
+
+
+    @Test
     public void testPositivePayMax() {
         CreditAccount account = new CreditAccount(
                 500,
@@ -88,16 +113,17 @@ public class CreditAccountTest {
 
         Assertions.assertTrue(account.pay(1500));
     }
-
+    
     @Test
-    public void testPayNegativeAmount() {
+    public void testPayMax() {
         CreditAccount account = new CreditAccount(
                 500,
                 1000,
                 10
         );
 
-        Assertions.assertFalse(account.pay(-1000));
+        account.pay(1500);
+        Assertions.assertEquals(-1000, account.getBalance());
     }
 
     @Test
@@ -111,6 +137,28 @@ public class CreditAccountTest {
         Assertions.assertFalse(account.pay(2000));
     }
 
+    @Test
+    public void testNegativePayOverLimitResult() {
+        CreditAccount account = new CreditAccount(
+                500,
+                1000,
+                10
+        );
+
+        account.pay(2000);
+        Assertions.assertEquals(500, account.getBalance());
+    }
+
+    @Test
+    public void testPayNegativeAmount() {
+        CreditAccount account = new CreditAccount(
+                500,
+                1000,
+                10
+        );
+
+        Assertions.assertFalse(account.pay(-1000));
+    }
 
     @Test
     public void testAddPositiveAmount() {
