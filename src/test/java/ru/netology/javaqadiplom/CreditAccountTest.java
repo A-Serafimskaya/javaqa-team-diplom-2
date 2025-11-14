@@ -17,7 +17,6 @@ public class CreditAccountTest {
         Assertions.assertEquals(100, account.getBalance());
         Assertions.assertEquals(5000, account.getCreditLimit());
         Assertions.assertEquals(10, account.getRate());
-
     }
 
     @Test
@@ -39,7 +38,7 @@ public class CreditAccountTest {
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new CreditAccount(
-                    -20,
+                    -500,
                     3000,
                     10);
         });
@@ -68,17 +67,6 @@ public class CreditAccountTest {
     }
 
     @Test
-    public void testPayPositive() {
-        CreditAccount account = new CreditAccount(
-                500,
-                1000,
-                10
-        );
-
-        Assertions.assertTrue(account.pay(800));
-    }
-
-    @Test
     public void testPayBalanceOver0() {
         CreditAccount account = new CreditAccount(
                 500,
@@ -86,7 +74,7 @@ public class CreditAccountTest {
                 10
         );
 
-        account.pay(300);
+        Assertions.assertTrue(account.pay(300));
         Assertions.assertEquals(200, account.getBalance());
     }
 
@@ -98,7 +86,8 @@ public class CreditAccountTest {
                 10
         );
 
-        account.pay(800);
+
+        Assertions.assertTrue(account.pay(800));
         Assertions.assertEquals(-300, account.getBalance());
     }
 
@@ -112,17 +101,6 @@ public class CreditAccountTest {
         );
 
         Assertions.assertTrue(account.pay(1500));
-    }
-    
-    @Test
-    public void testPayMax() {
-        CreditAccount account = new CreditAccount(
-                500,
-                1000,
-                10
-        );
-
-        account.pay(1500);
         Assertions.assertEquals(-1000, account.getBalance());
     }
 
@@ -135,17 +113,6 @@ public class CreditAccountTest {
         );
 
         Assertions.assertFalse(account.pay(2000));
-    }
-
-    @Test
-    public void testNegativePayOverLimitResult() {
-        CreditAccount account = new CreditAccount(
-                500,
-                1000,
-                10
-        );
-
-        account.pay(2000);
         Assertions.assertEquals(500, account.getBalance());
     }
 
@@ -158,6 +125,7 @@ public class CreditAccountTest {
         );
 
         Assertions.assertFalse(account.pay(-1000));
+        Assertions.assertEquals(500, account.getBalance());
     }
 
     @Test
@@ -169,19 +137,7 @@ public class CreditAccountTest {
         );
 
         Assertions.assertTrue(account.add(1500));
-    }
-
-    @Test
-    public void shouldAddToPositiveBalance() {
-        CreditAccount account = new CreditAccount(
-                20,
-                5_000,
-                15
-        );
-
-        account.add(3_000);
-
-        Assertions.assertEquals(3_020, account.getBalance());
+        Assertions.assertEquals(2000, account.getBalance());
     }
 
     @Test
@@ -192,20 +148,8 @@ public class CreditAccountTest {
                 10
         );
 
-        Assertions.assertFalse(account.add(-500));
         Assertions.assertFalse(account.add(0));
-    }
-
-    @Test
-    public void shouldNotAddNegativeAmount() {
-        CreditAccount account = new CreditAccount(
-                500,
-                1000,
-                10
-        );
-
-        account.add(-500);
-
+        Assertions.assertFalse(account.add(-500));
         Assertions.assertEquals(500, account.getBalance());
     }
 
@@ -216,9 +160,8 @@ public class CreditAccountTest {
                 1000,
                 10
         );
-        int expected = -10;
-        int actual = account.yearChange();
-        Assertions.assertEquals(expected, actual);
+
+        Assertions.assertEquals(-10, account.yearChange());
     }
 
     @Test
@@ -229,22 +172,6 @@ public class CreditAccountTest {
                 10
         );
 
-        int expected = 0;
-        int actual = account.yearChange();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldNotCalculateInterestIfBalanceO() {
-        CreditAccount account = new CreditAccount(
-                0,
-                1000,
-                10
-        );
-
-        int expected = 0;
-        int actual = account.yearChange();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, account.yearChange());
     }
 }
-
