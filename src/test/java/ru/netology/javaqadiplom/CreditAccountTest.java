@@ -156,12 +156,14 @@ public class CreditAccountTest {
     @Test
     public void shouldCalculateInterestIfBalanceBelow0() {
         CreditAccount account = new CreditAccount(
-                -100,
+                500,
                 1000,
                 10
         );
 
-        Assertions.assertEquals(-10, account.yearChange());
+        account.pay(1000);
+
+        Assertions.assertEquals(-50, account.yearChange());
     }
 
     @Test
