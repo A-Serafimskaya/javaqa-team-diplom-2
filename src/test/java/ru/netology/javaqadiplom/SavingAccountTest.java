@@ -145,7 +145,7 @@ public class SavingAccountTest {
         account.add(3_000);
 
         int expected = 5000;
-        int actual =account.getBalance();
+        int actual = account.getBalance();
 
         Assertions.assertEquals(expected, actual);
     }
