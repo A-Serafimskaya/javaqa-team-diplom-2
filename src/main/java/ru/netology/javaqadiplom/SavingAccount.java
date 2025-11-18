@@ -73,11 +73,8 @@ public class SavingAccount extends Account {
      * на сумму покупки. Если же операция может привести к некорректному
      * состоянию счёта, то операция должна
      * завершиться вернув false и ничего не поменяв на счёте.
-     *
      * @param amount - сумма пополнения
-     * @param amount
      * @return true если операция прошла успешно, false иначе.
-     * @return
      */
     @Override
     public boolean add(int amount) {
