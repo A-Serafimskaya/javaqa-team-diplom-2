@@ -28,6 +28,19 @@ public class SavingAccountTest {
     }
 
     @Test
+    public void createErrorAccountForMinBalance() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    5_000,
+                    -5_000,
+                    2_000,
+                    5
+            );
+        });
+    }
+
+    @Test
     public void createErrorAccountForRateNegative() {
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -46,6 +59,19 @@ public class SavingAccountTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
                     35_000,
+                    5_000,
+                    20_000,
+                    5
+            );
+        });
+    }
+
+    @Test
+    public void createErrorAccountForInitBalanceLow() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    2_000,
                     5_000,
                     20_000,
                     5
@@ -165,5 +191,22 @@ public class SavingAccountTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    //Тесты получения баланса
+    @Test
+    public void getMaxBalanceTest() {
 
+        int expected = 20_000;
+        int actual = accountPositive.getMaxBalance();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getMinBalanceTest() {
+
+        int expected = 3_000;
+        int actual = accountPositive.getMinBalance();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
