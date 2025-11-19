@@ -6,34 +6,34 @@ import org.junit.jupiter.api.Assertions;
 
 public class BankTest {
 
-    Account Roman = new Account();
-    Account Alex = new Account();
+    Account roman = new Account();
+    Account alex = new Account();
 
     @Test
     public void shouldTransfer() {
 
-        Roman.add(5000);
-        Alex.add(2000);
+        roman.add(5000);
+        alex.add(2000);
 
         Bank bank = new Bank();
 
-        Assertions.assertTrue(bank.transfer(Roman, Alex, 1000));
-        Assertions.assertEquals(4000, Roman.getBalance());
-        Assertions.assertEquals(3000, Alex.getBalance());
+        Assertions.assertTrue(bank.transfer(roman, alex, 1000));
+        Assertions.assertEquals(4000, roman.getBalance());
+        Assertions.assertEquals(3000, alex.getBalance());
     }
 
     @Test
     public void shouldNotTransfer() {
 
-        Roman.add(5000);
-        Alex.add(2000);
+        roman.add(5000);
+        alex.add(2000);
 
         Bank bank = new Bank();
 
-        bank.transfer(Roman, Alex, 10_000);
+        bank.transfer(roman, alex, 10_000);
 
-        Assertions.assertFalse(bank.transfer(Roman, Alex, 10_000));
-        Assertions.assertEquals(5000, Roman.getBalance());
-        Assertions.assertEquals(2000, Alex.getBalance());
+        Assertions.assertFalse(bank.transfer(roman, alex, 10_000));
+        Assertions.assertEquals(5000, roman.getBalance());
+        Assertions.assertEquals(2000, alex.getBalance());
     }
 }
