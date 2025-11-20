@@ -34,4 +34,12 @@ public class BankTest {
         Assertions.assertEquals(5000, accountRoman.getBalance());
         Assertions.assertEquals(2000, accountAlex.getBalance());
     }
+
+    @Test
+    public void shouldNotTransferIfAmountBelow0() {
+
+        Assertions.assertFalse(bank.transfer(accountRoman, accountAlex, -1_000));
+        Assertions.assertEquals(5000, accountRoman.getBalance());
+        Assertions.assertEquals(2000, accountAlex.getBalance());
+    }
 }
