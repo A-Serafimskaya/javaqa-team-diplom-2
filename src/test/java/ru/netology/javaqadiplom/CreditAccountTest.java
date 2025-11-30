@@ -176,4 +176,17 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(0, account.yearChange());
     }
+
+    @Test
+    public void shouldCalculateInterestRight() {
+        CreditAccount account = new CreditAccount(
+                500,
+                1000,
+                10
+        );
+
+        account.pay(599);
+
+        Assertions.assertEquals(-9, account.yearChange());
+    }
 }
