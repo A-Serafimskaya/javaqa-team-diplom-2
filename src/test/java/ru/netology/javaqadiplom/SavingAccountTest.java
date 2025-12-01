@@ -191,6 +191,21 @@ public class SavingAccountTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void findOutRevenue2() {
+
+        SavingAccount account = new SavingAccount(
+                99,
+                50,
+                10_000,
+                80
+        );
+        int expected = 79;
+        int actual = account.yearChange();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
     //Тесты получения баланса
     @Test
     public void getMaxBalanceTest() {
