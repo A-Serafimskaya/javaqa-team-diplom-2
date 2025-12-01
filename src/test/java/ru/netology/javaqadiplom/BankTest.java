@@ -42,4 +42,25 @@ public class BankTest {
         Assertions.assertEquals(5000, accountRoman.getBalance());
         Assertions.assertEquals(2000, accountAlex.getBalance());
     }
+
+    @Test
+    public void TransferOverMaximumAmount() {
+
+        SavingAccount accountRomanV = new SavingAccount(
+                3_000,
+                50,
+                10_000,
+                80
+        );
+
+        SavingAccount accountAlexS = new SavingAccount(
+                9_000,
+                500,
+                10_000,
+                10
+        );
+        Assertions.assertFalse(bank.transfer(accountRomanV, accountAlexS, 2_000));
+        Assertions.assertEquals(3000, accountRomanV.getBalance());
+        Assertions.assertEquals(9000, accountAlexS.getBalance());
+    }
 }
